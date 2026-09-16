@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Route Details | AI Traffic Prediction System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="container navbar-inner">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🚦</span>
+                AI Traffic
+            </a>
+
+            <nav class="nav-links">
+
+                <a href="index.html">Home</a>
+                <a href="traffic.html">Traffic</a>
+                <a href="routes.html">Routes</a>
+                <a href="analytics.html">Analytics</a>
+                <a href="about.html">About</a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="page-header">
+
+        <div class="container">
+
+            <h1>Route Details</h1>
+
+            <p>
+                Detailed information about your recommended route.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN -->
+
+    <main>
+
+        <section class="section">
+
+            <div class="container">
+
+
+                <!-- ROUTE TITLE -->
+
+                <div class="result-card">
+
+                    <span class="traffic-status traffic-low">
+                        ⭐ AI Recommended Route
+                    </span>
+
+                    <h2 style="
+                        font-family:'Poppins',sans-serif;
+                        color:#102a43;
+                        margin-top:15px;
+                    ">
+                        Rajahmundry → Samalkota → Kakinada
+                    </h2>
+
+                    <p style="
+                        color:#667085;
+                        margin-top:5px;
+                    ">
+                        Lower predicted traffic and better
+                        estimated travel time.
+                    </p>
+
+                </div>
+
+
+                <!-- MAP -->
+
+                <div class="map-preview"
+                     style="
+                     height:450px;
+                     margin-bottom:25px;
+                     ">
+
+                    <div class="map-background"></div>
+
+
+                    <!-- Roads -->
+
+                    <div style="
+                        position:absolute;
+                        width:120%;
+                        height:5px;
+                        background:#d4dce3;
+                        top:42%;
+                        left:-10%;
+                        transform:rotate(15deg);
+                    "></div>
+
+                    <div style="
+                        position:absolute;
+                        width:120%;
+                        height:5px;
+                        background:#d4dce3;
+                        top:63%;
+                        left:-10%;
+                        transform:rotate(-10deg);
+                    "></div>
+
+
+                    <!-- Recommended route -->
+
+                    <div class="route-line"
+                         style="
+                         width:65%;
+                         left:18%;
+                         top:52%;
+                         "></div>
+
+
+                    <!-- Start -->
+
+                    <div class="map-pin pin-start">
+                        📍
+                    </div>
+
+
+                    <!-- Middle -->
+
+                    <div style="
+                        position:absolute;
+                        left:47%;
+                        top:47%;
+                        width:38px;
+                        height:38px;
+                        border-radius:50%;
+                        background:#00a6a6;
+                        color:white;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        box-shadow:0 8px 20px rgba(0,0,0,0.15);
+                    ">
+                        📍
+                    </div>
+
+
+                    <!-- Destination -->
+
+                    <div class="map-pin pin-end">
+                        🏁
+                    </div>
+
+
+                    <!-- Labels -->
+
+                    <div class="map-label label-start">
+                        Rajahmundry
+                    </div>
+
+                    <div style="
+                        position:absolute;
+                        left:43%;
+                        top:38%;
+                        background:white;
+                        padding:9px 12px;
+                        border-radius:9px;
+                        box-shadow:0 5px 15px rgba(0,0,0,0.1);
+                        font-size:11px;
+                        font-weight:700;
+                    ">
+                        Samalkota
+                    </div>
+
+                    <div class="map-label label-end">
+                        Kakinada
+                    </div>
+
+
+                    <!-- Map label -->
+
+                    <div style="
+                        position:absolute;
+                        bottom:20px;
+                        left:50%;
+                        transform:translateX(-50%);
+                        background:white;
+                        padding:10px 16px;
+                        border-radius:10px;
+                        box-shadow:0 5px 20px rgba(0,0,0,0.1);
+                        font-size:12px;
+                        font-weight:600;
+                    ">
+                        🗺️ Recommended route
+                    </div>
+
+                </div>
+
+
+                <!-- ROUTE INFORMATION -->
+
+                <div style="
+                    display:grid;
+                    grid-template-columns:repeat(4,1fr);
+                    gap:15px;
+                    margin-bottom:25px;
+                ">
+
+
+                    <div class="feature-card"
+                         style="padding:22px;">
+
+                        <div class="feature-icon">
+                            📏
+                        </div>
+
+                        <p style="
+                            color:#667085;
+                            font-size:12px;
+                        ">
+                            Distance
+                        </p>
+
+                        <h3>
+                            65 km
+                        </h3>
+
+                    </div>
+
+
+                    <div class="feature-card"
+                         style="padding:22px;">
+
+                        <div class="feature-icon">
+                            ⏱️
+                        </div>
+
+                        <p style="
+                            color:#667085;
+                            font-size:12px;
+                        ">
+                            Travel Time
+                        </p>
+
+                        <h3>
+                            1h 05m
+                        </h3>
+
+                    </div>
+
+
+                    <div class="feature-card"
+                         style="padding:22px;">
+
+                        <div class="feature-icon">
+                            🚦
+                        </div>
+
+                        <p style="
+                            color:#667085;
+                            font-size:12px;
+                        ">
+                            Traffic
+                        </p>
+
+                        <h3 style="color:#16a34a;">
+                            Low
+                        </h3>
+
+                    </div>
+
+
+                    <div class="feature-card"
+                         style="padding:22px;">
+
+                        <div class="feature-icon">
+                            ⏰
+                        </div>
+
+                        <p style="
+                            color:#667085;
+                            font-size:12px;
+                        ">
+                            Time Saved
+                        </p>
+
+                        <h3 style="color:#00a6a6;">
+                            ~15 min
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ROUTE STEPS -->
+
+                <div class="result-card">
+
+                    <h2 style="
+                        font-family:'Poppins',sans-serif;
+                        color:#102a43;
+                        margin-bottom:25px;
+                    ">
+                        🛣️ Route Summary
+                    </h2>
+
+
+                    <div style="
+                        display:flex;
+                        flex-direction:column;
+                        gap:20px;
+                    ">
+
+
+                        <div style="
+                            display:flex;
+                            gap:15px;
+                            align-items:center;
+                        ">
+
+                            <div style="
+                                width:38px;
+                                height:38px;
+                                border-radius:50%;
+                                background:#102a43;
+                                color:white;
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                font-size:14px;
+                            ">
+                                1
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Rajahmundry
+                                </strong>
+
+                                <p style="
+                                    color:#667085;
+                                    font-size:12px;
+                                ">
+                                    Starting point
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div style="
+                            width:2px;
+                            height:25px;
+                            background:#d4dce3;
+                            margin-left:18px;
+                        "></div>
+
+
+                        <div style="
+                            display:flex;
+                            gap:15px;
+                            align-items:center;
+                        ">
+
+                            <div style="
+                                width:38px;
+                                height:38px;
+                                border-radius:50%;
+                                background:#00a6a6;
+                                color:white;
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                font-size:14px;
+                            ">
+                                2
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Samalkota
+                                </strong>
+
+                                <p style="
+                                    color:#667085;
+                                    font-size:12px;
+                                ">
+                                    Intermediate point
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div style="
+                            width:2px;
+                            height:25px;
+                            background:#d4dce3;
+                            margin-left:18px;
+                        "></div>
+
+
+                        <div style="
+                            display:flex;
+                            gap:15px;
+                            align-items:center;
+                        ">
+
+                            <div style="
+                                width:38px;
+                                height:38px;
+                                border-radius:50%;
+                                background:#dc2626;
+                                color:white;
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                font-size:14px;
+                            ">
+                                3
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Kakinada
+                                </strong>
+
+                                <p style="
+                                    color:#667085;
+                                    font-size:12px;
+                                ">
+                                    Destination
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AI EXPLANATION -->
+
+                <div class="result-card"
+                     style="
+                     background:#e6f8f8;
+                     border:none;
+                     ">
+
+                    <h2 style="
+                        font-family:'Poppins',sans-serif;
+                        color:#102a43;
+                        margin-bottom:10px;
+                    ">
+                        🤖 AI Route Decision
+                    </h2>
+
+                    <p style="
+                        color:#475467;
+                        font-size:14px;
+                    ">
+                        This route is recommended because the
+                        predicted traffic level is lower than
+                        the other available routes.
+                    </p>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div style="
+                    display:flex;
+                    gap:12px;
+                    flex-wrap:wrap;
+                    margin-top:25px;
+                ">
+
+                    <a href="traffic.html"
+                       class="primary-button"
+                       style="
+                       text-decoration:none;
+                       ">
+                        ← Check Another Route
+                    </a>
+
+                    <a href="routes.html"
+                       style="
+                       text-decoration:none;
+                       padding:13px 20px;
+                       border:1px solid #e4e7ec;
+                       border-radius:9px;
+                       color:#102a43;
+                       font-weight:700;
+                       font-size:14px;
+                       ">
+                        Compare Routes
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <p>
+                © 2026 AI Traffic Prediction System
+            </p>
+
+            <p>
+                AI • Traffic • Smart Mobility
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

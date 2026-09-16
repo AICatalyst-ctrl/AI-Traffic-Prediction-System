@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Traffic Analysis | AI Traffic Prediction System</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<header class="navbar">
+
+    <div class="container navbar-inner">
+
+        <a href="index.html"
+           class="logo">
+
+            <span class="logo-icon">🚦</span>
+            AI Traffic
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="traffic.html">Traffic</a>
+
+            <a href="routes.html">Routes</a>
+
+            <a href="analytics.html">Analytics</a>
+
+            <a href="about.html">About</a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     PAGE HEADER
+========================================= -->
+
+<section class="page-header">
+
+    <div class="container">
+
+        <h1>
+            AI Traffic Analysis
+        </h1>
+
+        <p>
+            Our AI model analyzes traffic patterns
+            and predicts the congestion level.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     ANALYSIS
+========================================= -->
+
+<main>
+
+<section class="section">
+
+<div class="container">
+
+
+<!-- =========================================
+     JOURNEY SUMMARY
+========================================= -->
+
+<div class="result-card">
+
+    <p style="
+        color:#667085;
+        font-size:13px;
+        margin-bottom:6px;
+    ">
+        Traffic analysis for
+    </p>
+
+
+    <h2 id="routeTitle"
+        style="
+        font-family:'Poppins',sans-serif;
+        color:#102a43;
+        margin-bottom:20px;
+    ">
+
+        Loading route...
+
+    </h2>
+
+
+    <div style="
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:18px;
+    ">
+
+
+        <!-- CURRENT TRAFFIC -->
+
+        <div style="
+            background:#fff8df;
+            padding:22px;
+            border-radius:14px;
+        ">
+
+            <p style="
+                font-size:12px;
+                color:#667085;
+            ">
+                Current Traffic
+            </p>
+
+
+            <h2 id="currentTrafficAnalytics"
+                style="
+                font-family:'Poppins',sans-serif;
+                margin-top:5px;
+            ">
+                -
+            </h2>
+
+
+            <p style="
+                font-size:12px;
+                color:#667085;
+            ">
+                Current traffic condition
+            </p>
+
+        </div>
+
+
+
+        <!-- PREDICTED TRAFFIC -->
+
+        <div style="
+            background:#feecec;
+            padding:22px;
+            border-radius:14px;
+        ">
+
+            <p style="
+                font-size:12px;
+                color:#667085;
+            ">
+                Predicted Traffic
+            </p>
+
+
+            <h2 id="predictedTrafficAnalytics"
+                style="
+                font-family:'Poppins',sans-serif;
+                margin-top:5px;
+            ">
+                -
+            </h2>
+
+
+            <p id="trafficDescription"
+               style="
+               font-size:12px;
+               color:#667085;
+            ">
+                Traffic prediction
+            </p>
+
+        </div>
+
+
+
+        <!-- DISTANCE -->
+
+        <div style="
+            background:#e6f8f8;
+            padding:22px;
+            border-radius:14px;
+        ">
+
+            <p style="
+                font-size:12px;
+                color:#667085;
+            ">
+                Route Distance
+            </p>
+
+
+            <h2 id="analyticsDistance"
+                style="
+                color:#008c8c;
+                font-family:'Poppins',sans-serif;
+                margin-top:5px;
+            ">
+                -
+            </h2>
+
+
+            <p style="
+                font-size:12px;
+                color:#667085;
+            ">
+                Road distance
+            </p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     TRAVEL TIME
+========================================= -->
+
+<div class="result-card">
+
+    <h2 style="
+        font-family:'Poppins',sans-serif;
+        color:#102a43;
+        margin-bottom:20px;
+    ">
+        ⏱️ Travel Time Analysis
+    </h2>
+
+
+    <div style="
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:18px;
+    ">
+
+
+        <div class="feature-card"
+             style="padding:20px;">
+
+            <p style="
+                font-size:12px;
+                color:#667085;
+            ">
+                Normal Travel Time
+            </p>
+
+
+            <h2 id="normalTravelTime"
+                style="
+                color:#102a43;
+                margin-top:7px;
+            ">
+                -
+            </h2>
+
+        </div>
+
+
+
+        <div class="feature-card"
+             style="padding:20px;">
+
+            <p style="
+                font-size:12px;
+                color:#667085;
+            ">
+                Predicted Travel Time
+            </p>
+
+
+            <h2 id="predictedTravelTime"
+                style="
+                color:#dc2626;
+                margin-top:7px;
+            ">
+                -
+            </h2>
+
+        </div>
+
+
+
+        <div class="feature-card"
+             style="padding:20px;">
+
+            <p style="
+                font-size:12px;
+                color:#667085;
+            ">
+                Expected Delay
+            </p>
+
+
+            <h2 id="expectedDelay"
+                style="
+                color:#a16207;
+                margin-top:7px;
+            ">
+                -
+            </h2>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     TRAFFIC STATUS
+========================================= -->
+
+<div class="result-card">
+
+    <h2 style="
+        font-family:'Poppins',sans-serif;
+        color:#102a43;
+        margin-bottom:20px;
+    ">
+        🚦 Traffic Status
+    </h2>
+
+
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        flex-wrap:wrap;
+        gap:15px;
+    ">
+
+
+        <div>
+
+            <span id="analyticsTrafficStatus"
+                  class="traffic-status">
+
+                Loading...
+
+            </span>
+
+
+            <p id="analyticsStatusText"
+               style="
+               margin-top:10px;
+               color:#667085;
+               font-size:13px;
+            ">
+            </p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     AI ANALYSIS FACTORS
+========================================= -->
+
+<div class="result-card">
+
+    <h2 style="
+        font-family:'Poppins',sans-serif;
+        color:#102a43;
+        margin-bottom:20px;
+    ">
+        🤖 AI Analysis Factors
+    </h2>
+
+
+    <div style="
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:15px;
+    ">
+
+
+        <!-- TRAVEL TIME FACTOR -->
+
+        <div class="feature-card"
+             style="padding:20px;">
+
+            <div class="feature-icon">
+                🕐
+            </div>
+
+
+            <h3 style="font-size:16px;">
+                Travel Time
+            </h3>
+
+
+            <p id="travelTimeFactor">
+
+                Normal: --<br>
+                Predicted: --<br>
+                Delay: --
+
+            </p>
+
+        </div>
+
+
+
+        <!-- TRAFFIC LEVEL FACTOR -->
+
+        <div class="feature-card"
+             style="padding:20px;">
+
+            <div class="feature-icon">
+                🚗
+            </div>
+
+
+            <h3 style="font-size:16px;">
+                Traffic Level
+            </h3>
+
+
+            <p id="trafficFactorText">
+
+                Current: --<br>
+                Predicted: --
+
+            </p>
+
+        </div>
+
+
+
+        <!-- PREDICTION FACTOR -->
+
+        <div class="feature-card"
+             style="padding:20px;">
+
+            <div class="feature-icon">
+                📈
+            </div>
+
+
+            <h3 style="font-size:16px;">
+                Prediction
+            </h3>
+
+
+            <p id="predictionFactor">
+
+                Traffic prediction: --<br>
+                Recommendation: --
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     AI RECOMMENDATION
+========================================= -->
+
+<div class="result-card"
+     style="
+     border-left:5px solid #00a6a6;
+     ">
+
+
+    <h2 style="
+        font-family:'Poppins',sans-serif;
+        color:#102a43;
+        margin-bottom:10px;
+    ">
+        💡 AI Recommendation
+    </h2>
+
+
+    <p id="analyticsRecommendation"
+       style="
+       color:#667085;
+       margin-bottom:20px;
+    ">
+
+        Loading recommendation...
+
+    </p>
+
+
+    <a href="routes.html"
+       class="primary-button"
+       style="
+       display:inline-block;
+       text-decoration:none;
+       ">
+
+        🛣️ View Alternative Routes
+
+    </a>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <p>
+            © 2026 AI Traffic Prediction System
+        </p>
+
+
+        <p>
+            AI • Traffic • Smart Mobility
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================
+     ANALYTICS SCRIPT
+========================================= -->
+
+<script>
+
+
+/* =========================================
+   LOAD SELECTED ROUTE
+========================================= */
+
+const savedRoute =
+    localStorage.getItem(
+        "selectedTrafficRoute"
+    );
+
+
+if (savedRoute) {
+
+
+    const route =
+        JSON.parse(savedRoute);
+
+
+
+    /* =====================================
+       ROUTE TITLE
+    ===================================== */
+
+    document.getElementById(
+        "routeTitle"
+    ).textContent =
+        route.from +
+        " → " +
+        route.to;
+
+
+
+    /* =====================================
+       CURRENT TRAFFIC
+    ===================================== */
+
+    const currentTraffic =
+        document.getElementById(
+            "currentTrafficAnalytics"
+        );
+
+
+    if (currentTraffic) {
+
+        currentTraffic.textContent =
+            "🟡 Medium";
+
+    }
+
+
+
+    /* =====================================
+       PREDICTED TRAFFIC
+    ===================================== */
+
+    const predictedTraffic =
+        document.getElementById(
+            "predictedTrafficAnalytics"
+        );
+
+
+    if (predictedTraffic) {
+
+
+        predictedTraffic.textContent =
+            route.traffic.toUpperCase();
+
+
+        predictedTraffic.style.color =
+
+            route.traffic === "High"
+                ? "#dc2626"
+
+                : route.traffic === "Medium"
+                    ? "#a16207"
+
+                    : "#16a34a";
+
+    }
+
+
+
+    /* =====================================
+       TRAFFIC DESCRIPTION
+    ===================================== */
+
+    const description =
+        document.getElementById(
+            "trafficDescription"
+        );
+
+
+    if (description) {
+
+
+        description.textContent =
+
+            route.traffic === "High"
+
+                ? "Heavy congestion expected"
+
+                : route.traffic === "Medium"
+
+                    ? "Moderate congestion expected"
+
+                    : "Low congestion expected";
+
+    }
+
+
+
+    /* =====================================
+       DISTANCE
+    ===================================== */
+
+    const distanceElement =
+        document.getElementById(
+            "analyticsDistance"
+        );
+
+
+    if (distanceElement) {
+
+        distanceElement.textContent =
+            Number(route.distance).toFixed(1) +
+            " km";
+
+    }
+
+
+
+    /* =====================================
+       TIME VALUES
+    ===================================== */
+
+    const normalMinutes =
+        Number(route.normalTime);
+
+
+    const predictedMinutes =
+        Number(route.predictedTime);
+
+
+
+    /* =====================================
+       FORMAT TIME
+    ===================================== */
+
+    function formatTime(minutes) {
+
+
+        if (!Number.isFinite(minutes)) {
+
+            return "--";
+
+        }
+
+
+        const hours =
+            Math.floor(minutes / 60);
+
+
+        const mins =
+            Math.round(minutes % 60);
+
+
+        if (hours > 0) {
+
+            return (
+                hours +
+                "h " +
+                mins +
+                "m"
+            );
+
+        }
+
+
+        return mins + " min";
+
+    }
+
+
+
+    /* =====================================
+       NORMAL TRAVEL TIME
+    ===================================== */
+
+    const normalTimeElement =
+        document.getElementById(
+            "normalTravelTime"
+        );
+
+
+    if (normalTimeElement) {
+
+        normalTimeElement.textContent =
+            formatTime(normalMinutes);
+
+    }
+
+
+
+    /* =====================================
+       PREDICTED TRAVEL TIME
+    ===================================== */
+
+    const predictedTimeElement =
+        document.getElementById(
+            "predictedTravelTime"
+        );
+
+
+    if (predictedTimeElement) {
+
+        predictedTimeElement.textContent =
+            formatTime(predictedMinutes);
+
+    }
+
+
+
+    /* =====================================
+       EXPECTED DELAY
+    ===================================== */
+
+    const delay =
+        Math.max(
+            0,
+            Math.round(
+                predictedMinutes -
+                normalMinutes
+            )
+        );
+
+
+    const delayElement =
+        document.getElementById(
+            "expectedDelay"
+        );
+
+
+    if (delayElement) {
+
+        delayElement.textContent =
+            "+" +
+            delay +
+            " min";
+
+    }
+
+
+
+    /* =====================================
+       TRAFFIC STATUS
+    ===================================== */
+
+    const status =
+        document.getElementById(
+            "analyticsTrafficStatus"
+        );
+
+
+    const statusText =
+        document.getElementById(
+            "analyticsStatusText"
+        );
+
+
+    if (route.traffic === "High") {
+
+
+        status.textContent =
+            "🔴 High Traffic";
+
+
+        status.className =
+            "traffic-status traffic-high";
+
+
+        statusText.textContent =
+            "Heavy traffic is predicted on this route.";
+
+    }
+
+
+    else if (
+        route.traffic === "Medium"
+    ) {
+
+
+        status.textContent =
+            "🟡 Medium Traffic";
+
+
+        status.className =
+            "traffic-status traffic-medium";
+
+
+        statusText.textContent =
+            "Moderate traffic is expected on this route.";
+
+    }
+
+
+    else {
+
+
+        status.textContent =
+            "🟢 Low Traffic";
+
+
+        status.className =
+            "traffic-status traffic-low";
+
+
+        statusText.textContent =
+            "Traffic conditions are expected to be relatively clear.";
+
+    }
+
+
+
+    /* =====================================
+       AI FACTOR — TRAVEL TIME
+    ===================================== */
+
+    const travelTimeFactor =
+        document.getElementById(
+            "travelTimeFactor"
+        );
+
+
+    if (travelTimeFactor) {
+
+
+        travelTimeFactor.innerHTML =
+
+            "Normal: " +
+            formatTime(normalMinutes) +
+
+            "<br>" +
+
+            "Predicted: " +
+            formatTime(predictedMinutes) +
+
+            "<br>" +
+
+            "Delay: +" +
+            delay +
+            " min";
+
+    }
+
+
+
+    /* =====================================
+       AI FACTOR — TRAFFIC LEVEL
+    ===================================== */
+
+    const trafficFactor =
+        document.getElementById(
+            "trafficFactorText"
+        );
+
+
+    if (trafficFactor) {
+
+
+        const currentLevel =
+            route.traffic === "Low"
+                ? "🟢 Low"
+                : route.traffic === "Medium"
+                    ? "🟡 Medium"
+                    : "🟡 Medium";
+
+
+        const predictedLevel =
+            route.traffic === "High"
+                ? "🔴 High"
+                : route.traffic === "Medium"
+                    ? "🟡 Medium"
+                    : "🟢 Low";
+
+
+        trafficFactor.innerHTML =
+
+            "Current: " +
+            currentLevel +
+
+            "<br>" +
+
+            "Predicted: " +
+            predictedLevel;
+
+    }
+
+
+
+    /* =====================================
+       AI FACTOR — PREDICTION
+    ===================================== */
+
+    const predictionFactor =
+        document.getElementById(
+            "predictionFactor"
+        );
+
+
+    if (predictionFactor) {
+
+
+        let recommendationText;
+
+
+        if (route.traffic === "High") {
+
+            recommendationText =
+                "Alternative route";
+
+        }
+
+        else if (
+            route.traffic === "Medium"
+        ) {
+
+            recommendationText =
+                "Drive with caution";
+
+        }
+
+        else {
+
+            recommendationText =
+                "Selected route";
+
+        }
+
+
+        predictionFactor.innerHTML =
+
+            "Traffic prediction: " +
+            route.traffic +
+
+            "<br>" +
+
+            "Recommendation: " +
+            recommendationText;
+
+    }
+
+
+
+    /* =====================================
+       AI RECOMMENDATION
+    ===================================== */
+
+    const recommendation =
+        document.getElementById(
+            "analyticsRecommendation"
+        );
+
+
+    if (recommendation) {
+
+
+        if (
+            route.traffic === "High" &&
+            route.alternativeAvailable
+        ) {
+
+
+            recommendation.textContent =
+
+                "High traffic is predicted on " +
+                route.from +
+                " → " +
+                route.to +
+                ". An alternative route is available and should be considered.";
+
+        }
+
+
+        else if (
+            route.traffic === "High"
+        ) {
+
+
+            recommendation.textContent =
+
+                "High traffic is predicted on this route. Consider checking alternative routes.";
+
+        }
+
+
+        else if (
+            route.traffic === "Medium"
+        ) {
+
+
+            recommendation.textContent =
+
+                "Moderate traffic is expected. The selected route can be used, but some delay may occur.";
+
+        }
+
+
+        else {
+
+
+            recommendation.textContent =
+
+                "Low traffic is predicted. The selected route is currently recommended.";
+
+        }
+
+    }
+
+
+}
+
+
+else {
+
+
+    document.getElementById(
+        "routeTitle"
+    ).textContent =
+        "No route analyzed yet";
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

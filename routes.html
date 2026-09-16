@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alternative Routes | AI Traffic Prediction System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="container navbar-inner">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🚦</span>
+                AI Traffic
+            </a>
+
+            <nav class="nav-links">
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="routes.html"
+       style="
+           background:#e6f8f8;
+           color:#008c8c;
+           padding:8px 14px;
+           border-radius:10px;
+           font-weight:600;
+           box-shadow:0 2px 8px rgba(0,166,166,0.12);
+       ">
+        Routes
+    </a>
+
+    <a href="analytics.html">
+        Analytics
+    </a>
+
+    <a href="about.html">
+        About
+    </a>
+
+    <a href="traffic.html"
+       class="primary-button"
+       style="
+           text-decoration:none;
+       ">
+        Check Traffic
+    </a>
+
+</nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="page-header">
+
+        <div class="container">
+
+            <h1>Alternative Routes</h1>
+
+            <p>
+                Compare traffic conditions and choose
+                a better route for your journey.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ROUTES -->
+
+    <!-- ROUTES -->
+
+<main>
+
+    <section class="section">
+
+        <div class="container">
+
+            <!-- CURRENT JOURNEY -->
+
+            <div class="result-card">
+
+                <p style="
+                    color:#667085;
+                    font-size:13px;
+                ">
+                    Currently analyzed journey
+                </p>
+
+                <h2 id="journeyTitle" style="
+                    font-family:'Poppins',sans-serif;
+                    color:#102a43;
+                ">
+                    No route analyzed yet
+                </h2>
+
+                <p id="journeyMessage" style="
+                    color:#667085;
+                    margin-top:8px;
+                    font-size:14px;
+                ">
+                    Analyze a route from the Traffic page
+                    to see its details here.
+                </p>
+
+            </div>
+
+
+            <!-- ROUTE RESULT -->
+
+            <div id="routeResult"
+                 class="result-card"
+                 style="display:none;
+                 border:2px solid #00a6a6;
+                 position:relative;">
+
+                <div style="
+                    position:absolute;
+                    top:-13px;
+                    left:22px;
+                    background:#00a6a6;
+                    color:white;
+                    padding:5px 12px;
+                    border-radius:20px;
+                    font-size:11px;
+                    font-weight:700;
+                ">
+
+                    ⭐ AI ANALYZED ROUTE
+
+                </div>
+
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:flex-start;
+                    gap:20px;
+                    flex-wrap:wrap;
+                ">
+
+                    <div>
+
+                        <p style="
+                            color:#667085;
+                            font-size:12px;
+                            margin-bottom:5px;
+                        ">
+                            Selected Route
+                        </p>
+
+                        <h2 id="selectedRoute"
+                            style="
+                            font-family:'Poppins',sans-serif;
+                            color:#102a43;
+                            margin-bottom:10px;
+                        ">
+                        </h2>
+
+                        <span id="trafficStatus"
+                              class="traffic-status">
+                        </span>
+
+                    </div>
+
+
+                    <div style="text-align:right;">
+
+                        <div id="travelTime"
+                             style="
+                             font-size:28px;
+                             font-weight:700;
+                             color:#102a43;
+                        ">
+                        </div>
+
+                        <p style="
+                            font-size:12px;
+                            color:#667085;
+                        ">
+                            Predicted travel time
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <hr style="
+                    border:none;
+                    border-top:1px solid #e4e7ec;
+                    margin:25px 0;
+                ">
+
+
+                <div style="
+                    display:grid;
+                    grid-template-columns:repeat(3,1fr);
+                    gap:15px;
+                ">
+
+
+                    <div>
+
+                        <p style="
+                            font-size:12px;
+                            color:#667085;
+                        ">
+                            Distance
+                        </p>
+
+                        <strong id="routeDistance">
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <p style="
+                            font-size:12px;
+                            color:#667085;
+                        ">
+                            Traffic
+                        </p>
+
+                        <strong id="routeTraffic">
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <p style="
+                            font-size:12px;
+                            color:#667085;
+                        ">
+                            Recommendation
+                        </p>
+
+                        <strong id="routeRecommendation">
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ALTERNATIVE ROUTE -->
+
+            <div id="alternativeRouteCard"
+                 class="result-card"
+                 style="display:none;">
+
+                <h2 style="
+                    font-family:'Poppins',sans-serif;
+                    color:#102a43;
+                    margin-bottom:12px;
+                ">
+                    🛣️ Alternative Route
+                </h2>
+
+
+                <p id="alternativeRouteName"
+                   style="
+                   font-size:17px;
+                   font-weight:600;
+                   color:#102a43;
+                   margin-bottom:10px;
+                ">
+                </p>
+
+
+                <p id="alternativeRouteInfo"
+                   style="
+                   color:#475467;
+                   font-size:14px;
+                   line-height:1.7;
+                ">
+                </p>
+
+            </div>
+
+
+            <!-- AI EXPLANATION -->
+
+            <div id="aiExplanation"
+                 class="result-card"
+                 style="
+                 background:#e6f8f8;
+                 border:none;
+                 display:none;
+                 ">
+
+                <h2 style="
+                    font-family:'Poppins',sans-serif;
+                    color:#102a43;
+                    margin-bottom:10px;
+                ">
+                    🤖 Why this route?
+                </h2>
+
+                <p id="aiExplanationText"
+                   style="
+                   color:#475467;
+                   font-size:14px;
+                   line-height:1.7;
+                ">
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+                <!-- AI EXPLANATION -->
+
+                <div class="result-card"
+                     style="
+                     background:#e6f8f8;
+                     border:none;
+                     ">
+
+                    <h2 style="
+                        font-family:'Poppins',sans-serif;
+                        color:#102a43;
+                        margin-bottom:10px;
+                    ">
+                        🤖 Why this route?
+                    </h2>
+
+                    <p style="
+                        color:#475467;
+                        font-size:14px;
+                    ">
+
+                        The AI system recommends Route 2 because
+                        it has a lower predicted traffic level
+                        and a shorter estimated travel time
+                        compared with the other available routes.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <p>
+                © 2026 AI Traffic Prediction System
+            </p>
+
+            <p>
+                AI • Traffic • Smart Mobility
+            </p>
+
+        </div>
+
+    </footer>
+<script>
+/* =========================================
+   LOAD SELECTED ROUTE
+========================================= */
+
+const savedRoute =
+    localStorage.getItem("selectedTrafficRoute");
+
+
+if (savedRoute) {
+
+    const route =
+        JSON.parse(savedRoute);
+
+
+    /* Journey */
+
+    const journeyTitle =
+        document.getElementById(
+            "journeyTitle"
+        );
+
+    const journeyMessage =
+        document.getElementById(
+            "journeyMessage"
+        );
+
+
+    if (journeyTitle) {
+
+        journeyTitle.innerHTML =
+            route.from +
+            " → " +
+            route.to;
+
+    }
+
+
+    if (journeyMessage) {
+
+        journeyMessage.innerHTML =
+            "Route analyzed from the Traffic page.";
+
+    }
+
+
+    /* Show route card */
+
+    const routeResult =
+        document.getElementById(
+            "routeResult"
+        );
+
+
+    if (routeResult) {
+
+        routeResult.style.display =
+            "block";
+
+    }
+
+
+    /* Selected route */
+
+    const selectedRoute =
+        document.getElementById(
+            "selectedRoute"
+        );
+
+
+    if (selectedRoute) {
+
+        selectedRoute.innerHTML =
+            route.from +
+            " → " +
+            route.to;
+
+    }
+
+
+    /* Traffic */
+
+    const trafficStatus =
+        document.getElementById(
+            "trafficStatus"
+        );
+
+
+    const routeTraffic =
+        document.getElementById(
+            "routeTraffic"
+        );
+
+
+    let trafficEmoji = "";
+    let trafficClass = "";
+
+
+    if (route.traffic === "High") {
+
+        trafficEmoji = "🔴";
+        trafficClass = "traffic-high";
+
+    }
+
+    else if (
+        route.traffic === "Medium"
+    ) {
+
+        trafficEmoji = "🟡";
+        trafficClass = "traffic-medium";
+
+    }
+
+    else {
+
+        trafficEmoji = "🟢";
+        trafficClass = "traffic-low";
+
+    }
+
+
+    if (trafficStatus) {
+
+        trafficStatus.innerHTML =
+            trafficEmoji +
+            " " +
+            route.traffic +
+            " Traffic";
+
+        trafficStatus.className =
+            "traffic-status " +
+            trafficClass;
+
+    }
+
+
+    if (routeTraffic) {
+
+        routeTraffic.innerHTML =
+            route.traffic;
+
+        routeTraffic.style.color =
+            route.traffic === "High"
+                ? "#dc2626"
+                : route.traffic === "Medium"
+                    ? "#a16207"
+                    : "#16a34a";
+
+    }
+
+
+    /* Distance */
+
+    const routeDistance =
+        document.getElementById(
+            "routeDistance"
+        );
+
+
+    if (routeDistance) {
+
+        routeDistance.innerHTML =
+            route.distance +
+            " km";
+
+    }
+
+
+    /* Travel time */
+
+    const travelTime =
+        document.getElementById(
+            "travelTime"
+        );
+
+
+    if (travelTime) {
+
+        const hours =
+            Math.floor(
+                route.predictedTime / 60
+            );
+
+        const minutes =
+            route.predictedTime % 60;
+
+
+        if (hours > 0) {
+
+            travelTime.innerHTML =
+                hours +
+                "h " +
+                minutes +
+                "m";
+
+        }
+
+        else {
+
+            travelTime.innerHTML =
+                minutes +
+                " min";
+
+        }
+
+    }
+
+
+    /* Recommendation */
+
+    const recommendation =
+        document.getElementById(
+            "routeRecommendation"
+        );
+
+
+    if (recommendation) {
+
+        if (route.traffic === "High") {
+
+            recommendation.innerHTML =
+                "Alternative recommended";
+
+        }
+
+        else if (
+            route.traffic === "Medium"
+        ) {
+
+            recommendation.innerHTML =
+                "Drive with caution";
+
+        }
+
+        else {
+
+            recommendation.innerHTML =
+                "Main route recommended";
+
+        }
+
+    }
+
+
+    /* =================================
+       ALTERNATIVE ROUTE
+    ================================= */
+
+    const alternativeCard =
+        document.getElementById(
+            "alternativeRouteCard"
+        );
+
+
+    const alternativeName =
+        document.getElementById(
+            "alternativeRouteName"
+        );
+
+
+    const alternativeInfo =
+        document.getElementById(
+            "alternativeRouteInfo"
+        );
+
+
+    if (
+        route.traffic === "High" &&
+        route.alternativeAvailable
+    ) {
+
+        if (alternativeCard) {
+
+            alternativeCard.style.display =
+                "block";
+
+        }
+
+
+        if (alternativeName) {
+
+            alternativeName.innerHTML =
+                "⭐ Alternative route available";
+
+        }
+
+
+        if (alternativeInfo) {
+
+            alternativeInfo.innerHTML =
+                "The system found another road option. " +
+                "Consider the alternative route when traffic is high.";
+
+        }
+
+    }
+
+
+    /* =================================
+       AI EXPLANATION
+    ================================= */
+
+    const aiExplanation =
+        document.getElementById(
+            "aiExplanation"
+        );
+
+
+    const aiExplanationText =
+        document.getElementById(
+            "aiExplanationText"
+        );
+
+
+    if (aiExplanation) {
+
+        aiExplanation.style.display =
+            "block";
+
+    }
+
+
+    if (aiExplanationText) {
+
+        if (route.traffic === "High") {
+
+            aiExplanationText.innerHTML =
+                "The system predicts high traffic on " +
+                route.from +
+                " → " +
+                route.to +
+                ". An alternative route is recommended " +
+                "to reduce expected travel delay.";
+
+        }
+
+        else if (
+            route.traffic === "Medium"
+        ) {
+
+            aiExplanationText.innerHTML =
+                "The system predicts moderate traffic on " +
+                route.from +
+                " → " +
+                route.to +
+                ". The route can be used, but users should " +
+                "expect some delay.";
+
+        }
+
+        else {
+
+            aiExplanationText.innerHTML =
+                "The system predicts low traffic on " +
+                route.from +
+                " → " +
+                route.to +
+                ". The main route is recommended.";
+
+        }
+
+    }
+
+}
+
+else {
+
+    console.log(
+        "No analyzed route found."
+    );
+
+}
+</script>
+</body>
+
+</html>

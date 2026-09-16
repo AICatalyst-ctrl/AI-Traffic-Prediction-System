@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Check traffic and find better routes">
+
+    <title>Check Traffic | AI Traffic Prediction System</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Leaflet Map CSS -->
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="container navbar-inner">
+
+            <a href="index.html" class="logo">
+
+                <span class="logo-icon">
+                    🚦
+                </span>
+
+                AI Traffic
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="traffic.html">
+                    Traffic
+                </a>
+
+                <a href="routes.html">
+                    Routes
+                </a>
+
+                <a href="analytics.html">
+                    Analytics
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= PAGE HEADER ================= -->
+
+    <section class="page-header">
+
+        <div class="container">
+
+            <h1>
+                Check Traffic
+            </h1>
+
+            <p>
+                Enter your starting point and destination
+                to analyze traffic conditions.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <section class="section">
+
+            <div class="container">
+
+
+                <!-- ================= SEARCH CARD ================= -->
+
+                <div style="
+                    max-width:760px;
+                    margin:auto;
+                ">
+
+                    <div class="form-card">
+
+
+                        <h2 style="
+                            font-family:'Poppins',sans-serif;
+                            color:#102a43;
+                            margin-bottom:25px;
+                        ">
+
+                            📍 Plan Your Journey
+
+                        </h2>
+
+
+
+                        <!-- FROM -->
+
+                        <div class="form-group">
+
+    <label for="fromLocation">
+        Starting Location
+    </label>
+
+    <div class="location-search">
+
+        <input
+            type="text"
+            id="fromLocation"
+            class="form-control"
+            placeholder="Search starting location..."
+            autocomplete="off"
+        >
+
+        <div
+            id="fromSuggestions"
+            class="location-suggestions">
+        </div>
+
+    </div>
+
+</div>
+
+
+
+                        <!-- TO -->
+
+                        <div class="form-group">
+
+    <label for="toLocation">
+        Destination
+    </label>
+
+    <div class="location-search">
+
+        <input
+            type="text"
+            id="toLocation"
+            class="form-control"
+            placeholder="Search destination..."
+            autocomplete="off"
+        >
+
+        <div
+            id="toSuggestions"
+            class="location-suggestions">
+        </div>
+
+    </div>
+
+</div>
+
+
+
+                        <!-- POPULAR LOCATIONS -->
+
+                        <p style="
+                            font-size:13px;
+                            font-weight:600;
+                            color:#667085;
+                            margin-bottom:12px;
+                        ">
+
+                            Popular locations
+
+                        </p>
+
+
+
+                        <div style="
+                            display:flex;
+                            flex-wrap:wrap;
+                            gap:8px;
+                            margin-bottom:25px;
+                        ">
+
+
+                            <button
+                                type="button"
+                                class="location-chip"
+                                onclick="setDestination('Kakinada')">
+
+                                Kakinada
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="location-chip"
+                                onclick="setDestination('Rajahmundry')">
+
+                                Rajahmundry
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="location-chip"
+                                onclick="setDestination('Visakhapatnam')">
+
+                                Visakhapatnam
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="location-chip"
+                                onclick="setDestination('Sarpavaram Junction')">
+
+                                Sarpavaram
+
+                            </button>
+
+
+                        </div>
+
+
+
+                        <!-- ANALYZE BUTTON -->
+
+                        <button
+                            class="primary-button"
+                            style="width:100%;"
+                            onclick="analyzeTraffic()">
+
+                            🔍 Analyze Traffic
+
+                        </button>
+
+
+                    </div>
+
+
+
+                    <!-- ================= REAL MAP ================= -->
+
+                    <div style="
+                        margin-top:25px;
+                    ">
+
+                        <div id="trafficMap"></div>
+
+                    </div>
+                      <!-- ================= TRAFFIC ANALYSIS RESULT ================= -->
+
+<div id="trafficResult" class="result-card"
+     style="margin-top:25px; display:none;">
+
+    <h2 style="
+        color:#102a43;
+        margin-bottom:20px;
+        font-family:'Poppins',sans-serif;
+    ">
+        🚦 Traffic Analysis
+    </h2>
+
+
+    <p id="routeName"
+       style="
+       color:#667085;
+       margin-bottom:20px;
+    ">
+    </p>
+
+
+    <div style="
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:15px;
+    ">
+
+
+        <!-- Current Traffic -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🚦
+            </div>
+
+            <h3>
+                Current Traffic
+            </h3>
+
+            <p id="currentTraffic">
+                🟡 Medium
+            </p>
+
+        </div>
+
+
+        <!-- Predicted Traffic -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🤖
+            </div>
+
+            <h3>
+                Predicted Traffic
+            </h3>
+
+            <p id="predictedTraffic">
+                🔴 High
+            </p>
+
+        </div>
+
+
+        <!-- Travel Time -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ⏱️
+            </div>
+
+            <h3>
+                Estimated Time
+            </h3>
+
+            <p id="estimatedTime">
+                Calculating...
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Recommendation -->
+
+    <div style="
+        margin-top:20px;
+        padding:18px;
+        background:#e6f8f8;
+        border-radius:12px;
+    ">
+
+        <h3 style="
+            color:#102a43;
+            margin-bottom:8px;
+        ">
+            💡 Recommendation
+        </h3>
+
+        <p id="recommendation"
+           style="color:#475467;">
+
+            Analyzing the selected route...
+
+        </p>
+
+    </div>
+<!-- ================= ALTERNATIVE ROUTE ================= -->
+
+<div id="alternativeRoute"
+     style="
+        margin-top:20px;
+        padding:20px;
+        background:#f8fafc;
+        border:1px solid #e4e7ec;
+        border-radius:14px;
+        display:none;
+     ">
+
+    <h3 style="
+        color:#102a43;
+        margin-bottom:10px;
+    ">
+        🛣️ Alternative Route
+    </h3>
+
+    <p id="alternativeText"
+       style="
+          color:#475467;
+          margin-bottom:15px;
+       ">
+    </p>
+
+    <button
+        id="useAlternativeBtn"
+        class="primary-button"
+        style="display:none;">
+
+        ⭐ Use Recommended Route
+
+    </button>
+
+</div>
+</div>
+
+
+                    <!-- ================= INFO CARDS ================= -->
+
+                    <div style="
+                        display:grid;
+                        grid-template-columns:repeat(3,1fr);
+                        gap:15px;
+                        margin-top:25px;
+                    ">
+
+
+                        <!-- AI -->
+
+                        <div class="feature-card"
+                             style="padding:20px;">
+
+                            <div class="feature-icon">
+
+                                🤖
+
+                            </div>
+
+
+                            <h3 style="font-size:16px;">
+
+                                AI Prediction
+
+                            </h3>
+
+
+                            <p>
+
+                                Predict traffic level
+                                using ML analysis.
+
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- TRAFFIC -->
+
+                        <div class="feature-card"
+                             style="padding:20px;">
+
+                            <div class="feature-icon">
+
+                                🚦
+
+                            </div>
+
+
+                            <h3 style="font-size:16px;">
+
+                                Traffic Level
+
+                            </h3>
+
+
+                            <p>
+
+                                Low, Medium or
+                                High congestion.
+
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- ROUTE -->
+
+                        <div class="feature-card"
+                             style="padding:20px;">
+
+                            <div class="feature-icon">
+
+                                🛣️
+
+                            </div>
+
+
+                            <h3 style="font-size:16px;">
+
+                                Better Route
+
+                            </h3>
+
+
+                            <p>
+
+                                Get an alternative
+                                route recommendation.
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <p>
+
+                © 2026 AI Traffic Prediction System
+
+            </p>
+
+
+            <p>
+
+                AI • Traffic • Smart Mobility
+
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- ================= LEAFLET JS ================= -->
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/script.js"></script>
+
+
+</body>
+
+</html>
